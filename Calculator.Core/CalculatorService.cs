@@ -1,11 +1,11 @@
-﻿using Calculator.Interfaces;
+﻿using Calculator.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator
+namespace Calculator.Core
 {
     public class CalculatorService
     {
@@ -35,11 +35,11 @@ namespace Calculator
 
                 double[] numbers = parts.Where(p => double.TryParse(p, out _)).Select(double.Parse).ToArray();
 
-                if (operation is UnaryOperation && numbers.Length >= 1)
+                if (operation is Operations.UnaryOperation && numbers.Length >= 1)
                 {
                     return operation.Call(numbers[0]).ToString();
                 }
-                else if (operation is BinaryOperation && numbers.Length >= 2)
+                else if (operation is Operations.BinaryOperation && numbers.Length >= 2)
                 {
                     return operation.Call(numbers[0], numbers[1]).ToString();
                 }

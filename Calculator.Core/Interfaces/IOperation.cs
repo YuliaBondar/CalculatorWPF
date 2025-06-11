@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.Interfaces
+namespace Calculator.Core.Interfaces
 {
     public interface IOperation
     {
