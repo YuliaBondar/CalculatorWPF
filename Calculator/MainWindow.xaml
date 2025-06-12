@@ -6,38 +6,207 @@
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
         Title="Calculator" Height="549" Width="453">
-    <Grid Margin="0,0,0,-6">
+    <Grid Margin="0,0,0,-16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="15*"/>
             <RowDefinition Height="49*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="Display" FontSize="24" Margin="0,0,0,23" IsReadOnly="True" Grid.RowSpan="2" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Text="0"  TextAlignment="Right"/>
-        <Button Content="7" HorizontalAlignment="Left" Margin="7,11,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="8" HorizontalAlignment="Left" Margin="115,11,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="9" HorizontalAlignment="Left" Margin="223,11,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="/" HorizontalAlignment="Left" Margin="331,11,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102
-                " Background="#FFF37E06" Click="Button_Click"/>
-        <Button Content="4" HorizontalAlignment="Left" Margin="7,90,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="5" HorizontalAlignment="Left" Margin="115,90,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="6" HorizontalAlignment="Left" Margin="223,90,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="*" HorizontalAlignment="Left" Margin="331,90,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102  " Background="#FFF37E06" Click="Button_Click"/>
-        <Button Content="1" HorizontalAlignment="Left" Margin="7,169,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="2" HorizontalAlignment="Left" Margin="115,169,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="3" HorizontalAlignment="Left" Margin="223,169,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="-" HorizontalAlignment="Left" Margin="331,169,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102 " Background="#FFF37E06" Click="Button_Click"/>
-        <Button Content="0" HorizontalAlignment="Left" Margin="7,248,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="C" HorizontalAlignment="Left" Margin="115,248,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="=" HorizontalAlignment="Left" Margin="223,248,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102" Click="Button_Click"/>
-        <Button Content="+" HorizontalAlignment="Left" Margin="331,248,0,0" Grid.Row="2" VerticalAlignment="Top" Height="74" Width="102 " Background="#FFF37E06" Click="Button_Click"/>
-        <ComboBox x:Name="FunctionComboBox" HorizontalAlignment="Left" Margin="10,339,0,0"
-          Grid.Row="2" VerticalAlignment="Top" Width="423" Height="35" SelectionChanged="FunctionComboBox_SelectionChanged">
-           
-        </ComboBox>
 
 
+        <TextBox x:Name="Display" 
+                 FontSize="24" 
+                 Margin="0,0,0,23" 
+                 IsReadOnly="True" 
+                 Grid.RowSpan="2" 
+                 Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" 
+                 Text="{Binding DisplayText}" 
+                 TextAlignment="Right"/>
+        
+        <Button Content="7" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="7" 
+                HorizontalAlignment="Left" 
+                Margin="7,11,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top"
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="8" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="8" 
+                HorizontalAlignment="Left" 
+                Margin="115,11,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="9" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="9" 
+                HorizontalAlignment="Left" 
+                Margin="223,11,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="/" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="/" 
+                HorizontalAlignment="Left" 
+                Margin="331,11,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="63" 
+                Width="102"
+                Background="#FFF37E06"/>
+
+        <Button Content="4" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="4" 
+                HorizontalAlignment="Left" 
+                Margin="7,90,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="5" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="5" 
+                HorizontalAlignment="Left" 
+                Margin="115,90,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="6" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="6" 
+                HorizontalAlignment="Left" 
+                Margin="223,90,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="*" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="*" 
+                HorizontalAlignment="Left" 
+                Margin="331,76,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="60" 
+                Width="102"
+                Background="#FFF37E06"/>
+        <Button Content="1" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="1" 
+                HorizontalAlignment="Left" 
+                Margin="7,169,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="2" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="2" 
+                HorizontalAlignment="Left" 
+                Margin="115,169,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="3" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="3" 
+                HorizontalAlignment="Left" 
+                Margin="223,169,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="-" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="-" 
+                HorizontalAlignment="Left" 
+                Margin="331,138,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="60"
+                Width="102"
+                Background="#FFF37E06"/>
+
+        <Button Content="0" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="0" 
+                HorizontalAlignment="Left" 
+                Margin="7,248,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="C" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="C" 
+                HorizontalAlignment="Left" 
+                Margin="115,248,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="=" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="=" 
+                HorizontalAlignment="Left" 
+                Margin="223,248,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="74" 
+                Width="102"/>
+
+        <Button Content="+" 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="+" 
+                HorizontalAlignment="Left" 
+                Margin="331,199,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="60" 
+                Width="102"
+                Background="#FFF37E06"/>
+
+        <ComboBox x:Name="FunctionComboBox" 
+          HorizontalAlignment="Left" 
+          Margin="10,359,0,0"
+          Grid.Row="2" 
+          VerticalAlignment="Top" 
+          Width="423" 
+          Height="35"
+          ItemsSource="{Binding FunctionNames}"
+          SelectedItem="{Binding SelectedFunction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
 
+        <Button Content="." 
+                Command="{Binding ButtonClickCommand}" 
+                CommandParameter="." 
+                HorizontalAlignment="Left" 
+                Margin="331,262,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Height="60" 
+                Width="102"
+                Background="#FFF37E06"/>
     </Grid>
 </Window>

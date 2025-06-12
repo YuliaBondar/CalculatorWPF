@@ -1,9 +1,7 @@
-﻿using Calculator.Core.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Calculator.Core.Interfaces;
 
 namespace Calculator.Core
 {
@@ -20,7 +18,10 @@ namespace Calculator.Core
         {
             try
             {
+                
                 string[] parts = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                parts = parts.Select(p => p.Replace(',', '.')).ToArray();
 
                 string op = parts.FirstOrDefault(p => operations.ContainsKey(p));
                 if (op == null)
@@ -32,20 +33,28 @@ namespace Calculator.Core
                 {
                     return "Ошибка: неизвестная операция";
                 }
+                //десятичный разделитель
+                double[] numbers = parts
+                    .Where(p => double.TryParse(p, NumberStyles.Float, CultureInfo.InvariantCulture, out _))
+                    .Select(p => double.Parse(p, CultureInfo.InvariantCulture))
+                    .ToArray();
 
-                double[] numbers = parts.Where(p => double.TryParse(p, out _)).Select(double.Parse).ToArray();
-
-                if (operation is Operations.UnaryOperation && numbers.Length >= 1)
+               
+                if (operation is Operations.UnaryOperation)
                 {
-                    return operation.Call(numbers[0]).ToString();
+                    if (numbers.Length < 1)
+                        return "Ошибка: операция требует 1 аргумент.";
+                    return operation.Call(numbers[0]).ToString(CultureInfo.InvariantCulture);
                 }
-                else if (operation is Operations.BinaryOperation && numbers.Length >= 2)
+                else if (operation is Operations.BinaryOperation)
                 {
-                    return operation.Call(numbers[0], numbers[1]).ToString();
+                    if (numbers.Length < 2)
+                        return "Ошибка: операция требует 2 аргумента.";
+                    return operation.Call(numbers[0], numbers[1]).ToString(CultureInfo.InvariantCulture);
                 }
                 else
                 {
-                    return "Ошибка: недостаточно аргументов";
+                    return "Ошибка: неизвестный тип операции.";
                 }
             }
             catch (Exception ex)
@@ -54,5 +63,4 @@ namespace Calculator.Core
             }
         }
     }
-
 }

@@ -21,7 +21,12 @@ namespace Calculator.Core.Operations
             if (args.Length < 1)
                 throw new ArgumentException("Требуется 1 аргумент.");
 
-            return _operation(args[0]);//вызов делегата - ссылка на метод с определенной сигнатурой
+            double result = _operation(args[0]);
+            if (double.IsNaN(result))
+            {
+                throw new ArgumentException("Результат операции является неопределенным (NaN).");
+            }
+            return result;
         }
     }
 }

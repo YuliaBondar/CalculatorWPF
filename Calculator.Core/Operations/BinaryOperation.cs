@@ -22,7 +22,12 @@ namespace Calculator.Core.Operations
                 throw new ArgumentException("Требуется 2 аргумента.");
 
             // Берем только первые 2 аргумента, остальные игнорируем
-            return _operation(args[0], args[1]);
+            double result = _operation(args[0], args[1]);
+            if (double.IsNaN(result))
+            {
+                throw new ArgumentException("Результат операции является неопределенным (NaN).");
+            }
+            return result;
         }
     }
 }

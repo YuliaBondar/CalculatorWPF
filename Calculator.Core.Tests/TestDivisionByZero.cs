@@ -1,6 +1,4 @@
-﻿using Xunit;
-using Calculator.Core;
-using System;
+﻿
 using Calculator.Core.Operations;
 
 namespace Calculator.Core.Tests
@@ -19,7 +17,7 @@ namespace Calculator.Core.Tests
         {
             string input = "10 / 0";
 
-            string expectedErrorMessagePart = "Ошибка: Attempted to divide by zero.";
+            string expectedErrorMessagePart = "Ошибка: Попытка деления на ноль.";
 
             string actualResult = _calculatorService.Calculate(input);
 
@@ -36,7 +34,7 @@ namespace Calculator.Core.Tests
         public void Calculate_NonNumericArguments_ReturnsErrorMessage(string input)
         {
             string actualResult = _calculatorService.Calculate(input);
-            Assert.Contains("Ошибка: недостаточно аргументов", actualResult);
+            Assert.Contains("Ошибка: операция требует", actualResult);
             Assert.False(double.TryParse(actualResult, out _), "Результат не должен быть числом при ошибке формата.");
 
         }
@@ -56,7 +54,7 @@ namespace Calculator.Core.Tests
         }
 
         [Theory]
-        [InlineData("+ 5", "Ошибка: недостаточно аргументов")]
+        [InlineData("+ 5", "Ошибка: операция требует 2 аргумента.")]
        
         public void Calculate_Arguments_ReturnsErrorMessage(string input, string errorMessage)
         {

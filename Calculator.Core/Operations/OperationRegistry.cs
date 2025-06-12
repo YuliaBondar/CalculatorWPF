@@ -14,15 +14,32 @@ namespace Calculator.Core.Operations
                 { "+", new BinaryOperation((a, b) => a + b) },
                 { "-", new BinaryOperation((a, b) => a - b) },
                 { "*", new BinaryOperation((a, b) => a * b) },
-                { "/", new BinaryOperation((a, b) => b == 0 ? throw new DivideByZeroException() : a / b) },
-                { "pow", new BinaryOperation(Math.Pow) },
+                { "/", new BinaryOperation((a, b) => {
+                    if (b == 0)
+                    {
+                        throw new DivideByZeroException("Попытка деления на ноль.");
+                    }
+                    double result = a / b;
+                    if (double.IsNaN(result))
+                    {
+                        throw new ArgumentException("NaN");
+                    }
+                    return result;
+                }) },
+                { "pow", new BinaryOperation((a, b) => {
+                    if (a < 0 && b % 1 != 0)
+                    {
+                        throw new ArgumentException("NAN.");
+                    }
+                    return Math.Pow(a, b);
+                }) },
                 { "atan2", new BinaryOperation(Math.Atan2) },
 
                 // Unary operations
                 { "sin", new UnaryOperation(Math.Sin) },
                 { "cos", new UnaryOperation(Math.Cos) },
-                { "sqrt", new UnaryOperation(Math.Sqrt) },
-                { "log", new UnaryOperation(Math.Log) },
+                { "sqrt", new UnaryOperation(a => a < 0 ? throw new ArgumentOutOfRangeException(nameof(a), "NAN") : Math.Sqrt(a)) },
+                { "log", new UnaryOperation(a => a <= 0 ? throw new ArgumentOutOfRangeException(nameof(a), "NAN") : Math.Log(a)) },
                 { "abs", new UnaryOperation(Math.Abs) },
                 { "exp", new UnaryOperation(Math.Exp) }
             };

@@ -9,11 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="xunit" Version="2.9.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Calculator.Core\Calculator.Core.csproj" />
+    <ProjectReference Include="..\Calculator.Core\Calculator.Model.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Console", "Calcu
 		{DD36B738-E784-4585-9FE0-D78E5B44F71F} = {DD36B738-E784-4585-9FE0-D78E5B44F71F}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Core", "Calculator.Core\Calculator.Core.csproj", "{2C64214D-7ABE-4813-8E43-E088EBDA2EF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Model", "Calculator.Core\Calculator.Model.csproj", "{2C64214D-7ABE-4813-8E43-E088EBDA2EF1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Core.Tests", "Calculator.Core.Tests\Calculator.Core.Tests.csproj", "{8B65C500-05C4-4DEA-8013-2D796B4339F7}"
 EndProject
