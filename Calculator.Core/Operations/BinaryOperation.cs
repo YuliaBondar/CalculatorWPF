@@ -1,9 +1,4 @@
 ﻿using Calculator.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculator.Core.Operations
 {
@@ -21,13 +16,9 @@ namespace Calculator.Core.Operations
             if (args.Length < 2)
                 throw new ArgumentException("Требуется 2 аргумента.");
 
-            // Берем только первые 2 аргумента, остальные игнорируем
-            double result = _operation(args[0], args[1]);
-            if (double.IsNaN(result))
-            {
-                throw new ArgumentException("Результат операции является неопределенным (NaN).");
-            }
-            return result;
+            return _operation(args[0], args[1]);
+           
+            
         }
     }
 }

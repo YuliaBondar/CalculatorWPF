@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using Calculator.Core;
 using Calculator.Core.Operations;
 using Calculator.Core.Interfaces;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Reflection.Metadata;
 using CalculatorWPF.Command;
 
 
@@ -20,7 +11,7 @@ namespace CalculatorWPF.ViewModels
     class CalculatorViewModel : INotifyPropertyChanged
     {
         private string _input = "";
-        private string _displayText = "";
+        private string _displayText = "0";
         private string _selectedOperator = "";
         private readonly Dictionary<string, IOperation> _operations;
         private readonly CalculatorService _calculatorService;

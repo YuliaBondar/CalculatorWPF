@@ -1,6 +1,4 @@
 ﻿using Calculator.Core.Interfaces;
-using System;
-using System.Collections.Generic;
 
 namespace Calculator.Core.Operations
 {
@@ -15,25 +13,30 @@ namespace Calculator.Core.Operations
                 { "-", new BinaryOperation((a, b) => a - b) },
                 { "*", new BinaryOperation((a, b) => a * b) },
                 { "/", new BinaryOperation((a, b) => {
-                    if (b == 0)
-                    {
-                        throw new DivideByZeroException("Попытка деления на ноль.");
-                    }
-                    double result = a / b;
-                    if (double.IsNaN(result))
-                    {
-                        throw new ArgumentException("NaN");
-                    }
-                    return result;
+                    
+                     if (b == 0)
+                        {
+                            return double.NaN; 
+                        }
+
+                        return a / b;
                 }) },
                 { "pow", new BinaryOperation((a, b) => {
                     if (a < 0 && b % 1 != 0)
                     {
-                        throw new ArgumentException("NAN.");
+                        throw new ArgumentException("Не определено");
                     }
                     return Math.Pow(a, b);
                 }) },
-                { "atan2", new BinaryOperation(Math.Atan2) },
+                { "atan2", new BinaryOperation((y, x) => {
+                    double result = Math.Atan2(y, x);
+
+                    if (double.IsNaN(result))
+                    {
+                        throw new ArgumentException("Результат операции неопределен (NaN).");
+                    }
+                    return result;
+                }) },
 
                 // Unary operations
                 { "sin", new UnaryOperation(Math.Sin) },
