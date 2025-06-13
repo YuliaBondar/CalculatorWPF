@@ -13,12 +13,13 @@ namespace Calculator.Core.Operations
                 { "-", new BinaryOperation((a, b) => a - b) },
                 { "*", new BinaryOperation((a, b) => a * b) },
                 { "/", new BinaryOperation((a, b) => {
-                    
-                     if (b == 0)
-                        {
-                            return double.NaN; 
-                        }
 
+                    double result = a / b;
+
+                    if (b == 0)
+                        {
+                            return a is double ? double.NaN : throw new ArgumentException("Ошибка: Попытка деления на ноль.");
+                        }
                         return a / b;
                 }) },
                 { "pow", new BinaryOperation((a, b) => {

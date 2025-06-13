@@ -8,7 +8,7 @@ using CalculatorWPF.Command;
 
 namespace CalculatorWPF.ViewModels
 {
-    class CalculatorViewModel : INotifyPropertyChanged
+    public class CalculatorViewModel : INotifyPropertyChanged
     {
         private string _input = "";
         private string _displayText = "0";
