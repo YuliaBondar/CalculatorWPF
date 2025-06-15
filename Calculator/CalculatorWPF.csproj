@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Calculator.Core\Calculator.Model.csproj" />
+    <ProjectReference Include="..\CalculatorWPF.ViewModel\CalculatorWPF.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>
