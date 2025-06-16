@@ -1,5 +1,6 @@
-﻿using System.Globalization;
-using Calculator.Core.Interfaces;
+﻿using Calculator.Core.Interfaces;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Calculator.Core
 {
@@ -16,7 +17,9 @@ namespace Calculator.Core
         {
             try
             {
-                
+             
+                input = Regex.Replace(input, @"(?<=\S)([+\-*/])(?=\S)", " $1 ");
+
                 string[] parts = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                 parts = parts.Select(p => p.Replace(',', '.')).ToArray();
@@ -31,13 +34,12 @@ namespace Calculator.Core
                 {
                     return "Ошибка: неизвестная операция";
                 }
-                //десятичный разделитель
+
                 double[] numbers = parts
                     .Where(p => double.TryParse(p, NumberStyles.Float, CultureInfo.InvariantCulture, out _))
                     .Select(p => double.Parse(p, CultureInfo.InvariantCulture))
                     .ToArray();
 
-               
                 if (operation is Operations.UnaryOperation)
                 {
                     if (numbers.Length < 1)
