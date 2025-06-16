@@ -9,7 +9,6 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        //DataContext = new CalculatorViewModel();
     }
     private void Display_KeyDown(object sender, KeyEventArgs e)
     {

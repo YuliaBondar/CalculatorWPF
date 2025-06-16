@@ -11,11 +11,13 @@ namespace CalculatorWPF.ViewModels
     {
         private readonly Dictionary<string, IOperation> _operations;
         private readonly CalculatorService _calculatorService;
+        private readonly CalculatorCommandHandler _commandHandler;
 
         public CalculatorViewModel()
         {
             _operations = OperationRegistry.GetOperations();
             _calculatorService = new CalculatorService(_operations);
+            _commandHandler = new CalculatorCommandHandler(_calculatorService);
 
             FunctionNames = _operations.Keys
                 .Where(name => name != "+" && name != "-" && name != "*" && name != "/")
@@ -38,37 +40,11 @@ namespace CalculatorWPF.ViewModels
         [RelayCommand]
         public void ButtonClick(string content)
         {
-            if (content == "=")
+            if (content == "=" || content == "C" || _operations.ContainsKey(content))
             {
-                DisplayText = _calculatorService.Calculate(Input.Trim());
-                Input = DisplayText;
+                Input = _commandHandler.HandleButtonClick(Input, content);
+                DisplayText = string.IsNullOrEmpty(Input) ? "0" : Input; 
             }
-            else if (content == "C")
-            {
-                Input = "";
-                DisplayText = "0";
-            }
-            else if (_operations.ContainsKey(content))
-            {
-                HandleOperations(content);
-            }
-        }
-
-        private void HandleOperations(string content)
-        {
-            string[] parts = Input.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
-
-            if (parts.Length > 0 && _operations.ContainsKey(parts[^1]))
-            {
-                parts[^1] = content;
-                Input = string.Join(" ", parts);
-            }
-            else
-            {
-                Input += $" {content} ";
-            }
-
-            DisplayText = Input;
         }
 
         [RelayCommand]
@@ -110,5 +86,7 @@ namespace CalculatorWPF.ViewModels
         {
             FunctionComboboxSelection(value);
         }
+
+      
     }
 }
