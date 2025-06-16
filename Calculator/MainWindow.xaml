@@ -18,20 +18,24 @@
         <TextBox x:Name="Display"
          FontSize="24"
          Margin="0,40,0,0"
-         Grid.RowSpan="3"
          Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
          Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}"
          TextAlignment="Right"
          Height="103"
-         VerticalAlignment="Top"
-         KeyDown="Display_KeyDown"/>
+         VerticalAlignment="Top">
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding KeyDownCommand}" CommandParameter="Enter" Key="Enter"/>
+                <KeyBinding Command="{Binding KeyDownCommand}" CommandParameter="Back" Key="Back"/>
+            </TextBox.InputBindings>
+        </TextBox>
+
+
 
 
         <ComboBox x:Name="FunctionComboBox" 
-          HorizontalAlignment="Center" 
-          Margin="0,120,0,0"
+          HorizontalAlignment="Center"
           Grid.Row="2" 
-          VerticalAlignment="Top" 
+          VerticalAlignment="Center" 
           Width="423" 
           Height="53"
           ItemsSource="{Binding FunctionNames}"

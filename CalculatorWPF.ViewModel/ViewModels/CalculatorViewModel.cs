@@ -4,6 +4,7 @@ using Calculator.Core.Operations;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace CalculatorWPF.ViewModels
 {
@@ -86,7 +87,21 @@ namespace CalculatorWPF.ViewModels
         {
             FunctionComboboxSelection(value);
         }
+        [RelayCommand]
+        private void KeyDown(string key)
+        {
+            if (key == "Enter")
+            {
+                ButtonClick("=");
+            }
+            else if (key == "Back")
+            {
+                if (!string.IsNullOrEmpty(Input))
+                {
+                    Input = Input[..^1];
+                }
+            }
+        }
 
-      
     }
 }
