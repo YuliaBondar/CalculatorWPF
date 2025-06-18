@@ -15,13 +15,14 @@ namespace CalculatorWPF.ViewModels
         private readonly CalculatorCommandHandler _commandHandler;
 
         public CalculatorViewModel(
+
              Dictionary<string, IOperation> operations,
              CalculatorService calculatorService,
              CalculatorCommandHandler commandHandler)
         {
-            _operations = OperationRegistry.GetOperations();
-            _calculatorService = new CalculatorService(_operations);
-            _commandHandler = new CalculatorCommandHandler(_calculatorService);
+            _operations = operations;
+            _calculatorService = calculatorService;
+            _commandHandler = commandHandler;
 
             FunctionNames = _operations.Keys
                 .Where(name => name != "+" && name != "-" && name != "*" && name != "/")
