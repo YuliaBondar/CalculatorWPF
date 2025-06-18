@@ -14,7 +14,10 @@ namespace CalculatorWPF.ViewModels
         private readonly CalculatorService _calculatorService;
         private readonly CalculatorCommandHandler _commandHandler;
 
-        public CalculatorViewModel()
+        public CalculatorViewModel(
+             Dictionary<string, IOperation> operations,
+             CalculatorService calculatorService,
+             CalculatorCommandHandler commandHandler)
         {
             _operations = OperationRegistry.GetOperations();
             _calculatorService = new CalculatorService(_operations);
